@@ -57,29 +57,24 @@ export default {
     this.findMovie(route.params.id);
   },
   methods: {
-    findMovie: function (id) {
-      fetch('/.netlify/functions/findMovie/' + id,
-        { headers: { 'Accept': 'application/json' } })
-        .then((response) => response.json())
-        .then((result) => {
+    async findMovie() {
+        const movieId = this.$route.params.id;
+        const response = await fetch(`/.netlify/functions/findMovie/${movieId}`);
+        const data = await response.json();
+        console.log(data)
+        this.movie = data[0];
+      },
+      async deleteMovie() {
+        const movieId = this.$route.params.id;
+        if (confirm('¿Estás seguro de que quieres eliminar esta película?')) {
+          const response = await fetch(`/.netlify/functions/deleteMovie/${movieId}`, {
+            method: 'DELETE'
+          });
+          const result = await response.text();
           console.log(result);
-          this.movie = result[0];
-        })
-    },
-    deleteMovie: function () {
-    if (window.confirm('Seguro que desea eliminar esta película?')) {
-      fetch('/.netlify/functions/deleteMovie/' + this.movie.id,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          method: 'DELETE'
-        })
-        .then((response) => response)
-        .then((result) => {
-          console.log(result);
-          this.$router.push({ path: '/movies' });
-        })
-    }
-  }
+          this.$router.push('/movies'); // Redirige a la lista de películas después de eliminar
+        }
+      }
   },
 
 }

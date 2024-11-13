@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center mt-32">
       <h1 class="text-4xl text-center capitalize font-bold mt-10">Álbumes</h1>
       <div class="grid grid-cols-3 mt-20 w-full mx-auto gap-10">
         <div class="max-w-sm rounded overflow-hidden shadow-lg" v-for="album in albums" :key="album.id">

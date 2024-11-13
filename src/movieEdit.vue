@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center mt-10">
+    <div class="flex flex-col items-center mt-32">
       <h1 class="text-4xl font-bold mb-10">Editar Película</h1>
       <div class="w-full max-w-lg">
         <form @submit.prevent="updateMovie">

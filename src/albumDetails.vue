@@ -10,7 +10,7 @@
           <div class="ml-10 mt-4 text-lg flex flex-col gap-5">
             <p v-if="album && album.compositor && album.compositor.nombre" class="font-semibold">Compositor:
               <span class="text-purple-700">
-                <RouterLink v-if="album.compositor.slug" :to="'/composers/' + album.compositor.id">
+                <RouterLink v-if="album.compositor.slug" :to="'/composers/show/' + album.compositor.id">
                   {{ album.compositor.nombre }}
                 </RouterLink>
               </span>
